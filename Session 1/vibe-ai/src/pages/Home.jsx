@@ -10,6 +10,7 @@ import {
 
 import { songs } from "../data/songs";
 import { useMusic } from "../context/MusicContext";
+import SongCard from "../components/SongCard";
 
 const Home = () => {
   const { playSong } = useMusic();
@@ -30,41 +31,37 @@ const Home = () => {
       {/* =====================================================
           HERO
       ===================================================== */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <span className="eyebrow">
-            <Sparkles size={16} />
-            AI-powered music discovery
-          </span>
+      <section className="hero">
+        <div className="hero-container">
+          <div className="hero-content">
+            <span className="hero-eyebrow">
+              <Sparkles size={16} />
+              AI-powered music discovery
+            </span>
 
-          <h1>
-            Music that matches <span>your vibe.</span>
-          </h1>
+            <h1 className="hero-title">
+              Music that matches <span>your vibe.</span>
+            </h1>
 
-          <p>
-            Discover songs, create intelligent playlists, and find your next
-            favorite track with VibeAI.
-          </p>
+            <p className="hero-description">
+              Discover songs, create intelligent playlists, and find your next
+              favorite track with VibeAI.
+            </p>
 
-          <div className="hero-actions">
-            <Link to="/discover" className="btn btn-primary">
-              <Headphones size={18} />
-              Explore Music
-            </Link>
+            <div className="hero-actions">
+              <Link to="/discover" className="btn btn-primary btn-lg">
+                <Headphones size={18} />
+                Explore Music
+              </Link>
 
-            <Link
-              to="/playlists/create"
-              className="btn btn-secondary"
-            >
-              <Sparkles size={18} />
-              Create Playlist
-            </Link>
-          </div>
-        </div>
-
-        <div className="hero-visual" aria-hidden="true">
-          <div className="hero-disc">
-            <Music2 size={80} />
+              <Link
+                to="/create-playlist"
+                className="btn btn-secondary btn-lg"
+              >
+                <Sparkles size={18} />
+                Create Playlist
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -72,78 +69,44 @@ const Home = () => {
       {/* =====================================================
           FEATURED TRACKS
       ===================================================== */}
-      <section className="section">
-        <div className="section-heading">
-          <div>
-            <span className="eyebrow">
+      <section className="section container">
+        <div className="section-header">
+          <div className="section-header-content">
+            <span className="hero-eyebrow" style={{ marginBottom: '0.5rem' }}>
               Handpicked for you
             </span>
 
-            <h2>Featured tracks</h2>
+            <h2 className="section-title">Featured tracks</h2>
           </div>
 
           <Link
             to="/discover"
-            className="text-link"
+            className="section-link"
           >
             View all
-            <ArrowRight size={16} />
+            <ArrowRight size={16} style={{ display: 'inline', marginLeft: '4px' }} />
           </Link>
         </div>
 
         {featuredSongs.length > 0 ? (
           <div className="song-grid">
             {featuredSongs.map((song) => (
-              <article
-                className="song-card"
+              <SongCard
                 key={song.id}
-              >
-                <div className="song-cover">
-                  <Link
-                    to={`/songs/${song.id}`}
-                    aria-label={`View ${song.title}`}
-                  >
-                    <img
-                      src={song.cover}
-                      alt={`${song.title} by ${song.artist}`}
-                      loading="lazy"
-                    />
-                  </Link>
-
-                  <button
-                    type="button"
-                    className="play-overlay"
-                    onClick={(event) =>
-                      handlePlay(event, song)
-                    }
-                    aria-label={`Play ${song.title}`}
-                  >
-                    <Play
-                      size={20}
-                      fill="currentColor"
-                    />
-                  </button>
-                </div>
-
-                <div className="song-card-body">
-                  <Link to={`/songs/${song.id}`}>
-                    <h3>{song.title}</h3>
-                  </Link>
-
-                  <p>
-                    {song.artist} · {song.genre}
-                  </p>
-                </div>
-              </article>
+                song={song}
+                onPlay={(e) => handlePlay(e, song)}
+              />
             ))}
           </div>
         ) : (
           <div className="empty-state">
-            <Music2 size={32} />
+            <div className="empty-state-icon">
+              <Music2 size={32} />
+            </div>
 
-            <h3>No featured tracks</h3>
+            <h3 className="empty-state-title">No featured tracks</h3>
 
-            <p>
+            <p className="empty-state-description">
               There are no featured songs available right now.
             </p>
 
@@ -160,19 +123,21 @@ const Home = () => {
       {/* =====================================================
           AI RECOMMENDATION
       ===================================================== */}
-      <section className="section ai-section">
-        <div>
-          <span className="eyebrow">
-            <Sparkles size={15} />
-            Smart recommendations
-          </span>
+      <section className="section container">
+        <div className="ai-generator">
+          <div className="ai-generator-header">
+            <span className="hero-eyebrow" style={{ marginBottom: '0.5rem' }}>
+              <Sparkles size={15} />
+              Smart recommendations
+            </span>
 
-          <h2>Tell VibeAI how you feel.</h2>
+            <h2 className="ai-generator-title">Tell VibeAI how you feel.</h2>
 
-          <p>
-            Choose a mood and discover a personalized collection
-            of tracks built around it.
-          </p>
+            <p className="ai-generator-description">
+              Choose a mood and discover a personalized collection
+              of tracks built around it.
+            </p>
+          </div>
 
           <Link
             to="/discover"

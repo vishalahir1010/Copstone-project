@@ -48,121 +48,92 @@ const Sidebar = ({ open = false, onClose }) => {
       )}
 
       <aside className={`sidebar ${open ? "sidebar-open" : ""}`}>
-        <div className="sidebar-mobile-header">
-          <strong>VibeAI</strong>
+        <div className="sidebar-inner">
+          <div className="sidebar-section">
+            <span className="sidebar-title">
+              MENU
+            </span>
 
-          <button onClick={onClose}>
-            <X size={20} />
-          </button>
-        </div>
+            {mainLinks.map((item) => {
+              const Icon = item.icon;
 
-        <div className="sidebar-section">
-          <span className="sidebar-heading">
-            MENU
-          </span>
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={onClose}
+                  className={({ isActive }) =>
+                    `sidebar-link ${
+                      isActive ? "active" : ""
+                    }`
+                  }
+                >
+                  <span className="sidebar-link-icon">
+                    <Icon size={19} />
+                  </span>
+                  <span>{item.name}</span>
+                </NavLink>
+              );
+            })}
+          </div>
 
-          {mainLinks.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={onClose}
-                className={({ isActive }) =>
-                  `sidebar-link ${
-                    isActive ? "sidebar-link-active" : ""
-                  }`
-                }
-              >
-                <Icon size={19} />
-                <span>{item.name}</span>
-              </NavLink>
-            );
-          })}
-        </div>
-
-        <div className="sidebar-section">
-          <div className="sidebar-heading-row">
-            <span className="sidebar-heading">
+          <div className="sidebar-section">
+            <span className="sidebar-title">
               PLAYLISTS
             </span>
 
             <button
-              className="sidebar-add-button"
-              onClick={() => navigate("/create-playlist")}
-              aria-label="Create playlist"
+              className="sidebar-link"
+              onClick={() => navigate("/library")}
             >
-              <Plus size={16} />
+              Daily Focus
+            </button>
+
+            <button
+              className="sidebar-link"
+              onClick={() => navigate("/library")}
+            >
+              Night Drive
+            </button>
+
+            <button
+              className="sidebar-link"
+              onClick={() => navigate("/library")}
+            >
+              Weekend Energy
+            </button>
+
+            <button
+              className="sidebar-link"
+              onClick={() => navigate("/library")}
+            >
+              Coding Session
             </button>
           </div>
 
-          <button
-            className="playlist-sidebar-link"
-            onClick={() => navigate("/library")}
-          >
-            Daily Focus
-          </button>
+          <div style={{ marginTop: "auto", paddingTop: "1rem" }}>
+            <NavLink
+              to="/profile"
+              className="sidebar-link"
+              onClick={onClose}
+            >
+              <span className="sidebar-link-icon">
+                <User size={19} />
+              </span>
+              <span>Profile</span>
+            </NavLink>
 
-          <button
-            className="playlist-sidebar-link"
-            onClick={() => navigate("/library")}
-          >
-            Night Drive
-          </button>
-
-          <button
-            className="playlist-sidebar-link"
-            onClick={() => navigate("/library")}
-          >
-            Weekend Energy
-          </button>
-
-          <button
-            className="playlist-sidebar-link"
-            onClick={() => navigate("/library")}
-          >
-            Coding Session
-          </button>
-        </div>
-
-        <div className="sidebar-ai-card">
-          <div className="sidebar-ai-icon">
-            <Sparkles size={18} />
+            <NavLink
+              to="/settings"
+              className="sidebar-link"
+              onClick={onClose}
+            >
+              <span className="sidebar-link-icon">
+                <Settings size={19} />
+              </span>
+              <span>Settings</span>
+            </NavLink>
           </div>
-
-          <h4>AI Playlist</h4>
-
-          <p>
-            Create a playlist based on your mood.
-          </p>
-
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate("/create-playlist")}
-          >
-            Create Mix
-          </button>
-        </div>
-
-        <div className="sidebar-bottom">
-          <NavLink
-            to="/profile"
-            className="sidebar-link"
-            onClick={onClose}
-          >
-            <User size={19} />
-            <span>Profile</span>
-          </NavLink>
-
-          <NavLink
-            to="/settings"
-            className="sidebar-link"
-            onClick={onClose}
-          >
-            <Settings size={19} />
-            <span>Settings</span>
-          </NavLink>
         </div>
       </aside>
     </>

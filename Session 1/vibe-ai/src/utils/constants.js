@@ -50,6 +50,8 @@ export const GENRES = [
   "Acoustic",
 ];
 
+export const GENRE_OPTIONS = GENRES;
+
 export const MOODS = [
   "All",
   "Happy",
@@ -59,6 +61,8 @@ export const MOODS = [
   "Late Night",
   "Focus",
 ];
+
+export const MOOD_OPTIONS = MOODS;
 
 export const SORT_OPTIONS = [
   {

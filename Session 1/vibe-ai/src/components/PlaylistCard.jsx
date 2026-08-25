@@ -5,6 +5,10 @@ import {
   Play,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import "./styles/variables.css";
+import "./styles/global.css";
+import "./styles/components.css";
+import "./styles/responsive.css";
 
 const PlaylistCard = ({
   playlist,
@@ -18,7 +22,7 @@ const PlaylistCard = ({
   return (
     <article className="playlist-card">
       <div
-        className="playlist-cover"
+        className="playlist-card-cover"
         onClick={() =>
           navigate(
             `/playlists/${playlist.id}`
@@ -32,57 +36,51 @@ const PlaylistCard = ({
             loading="lazy"
           />
         ) : (
-          <div className="playlist-cover-placeholder">
+          <div className="playlist-card-overlay">
             ♫
           </div>
         )}
 
-        <button
-          className="playlist-play"
-          onClick={(e) => {
-            e.stopPropagation();
-            onPlay?.();
-          }}
-          aria-label="Play playlist"
-        >
-          <Play
-            size={20}
-            fill="currentColor"
-          />
-        </button>
-      </div>
-
-      <div className="playlist-info">
-        <div>
-          <h3>{playlist.name}</h3>
-
-          <p>
-            {playlist.description ||
-              "Your personalized playlist"}
-          </p>
-        </div>
-
-        <button
-          className="playlist-more"
-          aria-label="More playlist options"
-        >
-          <MoreHorizontal size={18} />
-        </button>
-      </div>
-
-      <div className="playlist-footer">
-        <span>
-          {playlist.songCount || 0} songs
-        </span>
-
-        {onLike && (
+        <div className="playlist-card-overlay">
           <button
-            onClick={onLike}
-            aria-label="Like playlist"
+            className="btn btn-icon btn-primary"
+            onClick={(e) => {
+              e.stopPropagation();
+              onPlay?.();
+            }}
+            aria-label="Play playlist"
           >
-            <Heart size={17} />
+            <Play
+              size={20}
+              fill="currentColor"
+            />
           </button>
-        )}
+        </div>
+      </div>
+
+      <div className="playlist-card-content">
+        <h3 className="playlist-card-title">{playlist.name}</h3>
+
+        <p className="playlist-card-description">
+          {playlist.description ||
+            "Your personalized playlist"}
+        </p>
+
+        <div className="playlist-card-meta">
+          <span>
+            {playlist.songCount || 0} songs
+          </span>
+
+          {onLike && (
+            <button
+              className="btn btn-icon btn-ghost btn-sm"
+              onClick={onLike}
+              aria-label="Like playlist"
+            >
+              <Heart size={17} />
+            </button>
+          )}
+        </div>
       </div>
     </article>
   );

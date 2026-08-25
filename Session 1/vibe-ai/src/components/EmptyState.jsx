@@ -1,5 +1,9 @@
 import React from "react";
 import { Music, Plus } from "lucide-react";
+import "./styles/variables.css";
+import "./styles/global.css";
+import "./styles/components.css";
+import "./styles/responsive.css";
 
 const EmptyState = ({
   title = "Nothing here yet",

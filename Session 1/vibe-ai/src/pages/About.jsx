@@ -32,43 +32,51 @@ const About = () => {
 
   return (
     <main className="page">
-      <section className="page-header">
-        <span className="eyebrow">
-          About VibeAI
-        </span>
+      <section className="hero">
+        <div className="hero-container">
+          <div className="hero-content">
+            <span className="hero-eyebrow">
+              About VibeAI
+            </span>
 
-        <h1>
-          A smarter way to discover music.
-        </h1>
+            <h1 className="hero-title">
+              A smarter way to discover music.
+            </h1>
 
-        <p>
-          VibeAI combines intelligent
-          recommendations with your personal
-          taste.
-        </p>
+            <p className="hero-description">
+              VibeAI combines intelligent
+              recommendations with your personal
+              taste.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="feature-grid">
-        {features.map((feature) => {
-          const Icon = feature.icon;
+      <section className="container">
+        <div className="category-grid">
+          {features.map((feature) => {
+            const Icon = feature.icon;
 
-          return (
-            <article
-              className="feature-card"
-              key={feature.title}
-            >
-              <Icon size={30} />
+            return (
+              <article
+                className="category-card"
+                key={feature.title}
+              >
+                <div className="category-card-icon">
+                  <Icon size={24} />
+                </div>
 
-              <h3>
-                {feature.title}
-              </h3>
+                <h3 className="category-card-title">
+                  {feature.title}
+                </h3>
 
-              <p>
-                {feature.text}
-              </p>
-            </article>
-          );
-        })}
+                <p className="category-card-description">
+                  {feature.text}
+                </p>
+              </article>
+            );
+          })}
+        </div>
       </section>
     </main>
   );

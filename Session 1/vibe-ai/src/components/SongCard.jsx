@@ -25,11 +25,10 @@ const SongCard = ({
 
   return (
     <article className="song-card">
-      <div className="song-card-image-wrapper">
+      <div className="song-card-cover">
         <img
           src={song.cover}
           alt={`${song.title} cover`}
-          className="song-card-image"
           loading="lazy"
         />
 
@@ -43,9 +42,35 @@ const SongCard = ({
             fill="currentColor"
           />
         </button>
+      </div>
 
+      <div className="song-card-info">
+        <h3 className="song-card-title" onClick={openDetails}>
+          {song.title}
+        </h3>
+
+        <p className="song-card-artist">
+          {song.artist}
+        </p>
+
+        <div className="song-card-meta">
+          {song.genre && (
+            <span>{song.genre}</span>
+          )}
+
+          {song.mood && (
+            <span>{song.mood}</span>
+          )}
+
+          {song.duration && (
+            <span>{song.duration}</span>
+          )}
+        </div>
+      </div>
+
+      <div className="song-card-actions">
         <button
-          className={`song-card-like ${
+          className={`btn btn-icon btn-ghost ${
             isLiked ? "liked" : ""
           }`}
           onClick={onLike}
@@ -64,56 +89,15 @@ const SongCard = ({
             }
           />
         </button>
-      </div>
-
-      <div className="song-card-content">
-        <div
-          className="song-card-title-row"
-          onClick={openDetails}
-        >
-          <div>
-            <h3>{song.title}</h3>
-            <p>{song.artist}</p>
-          </div>
-
-          <button
-            className="song-card-more"
-            aria-label="More options"
-          >
-            <MoreHorizontal size={18} />
-          </button>
-        </div>
-
-        <div className="song-card-meta">
-          {song.genre && (
-            <span>{song.genre}</span>
-          )}
-
-          {song.mood && (
-            <span>{song.mood}</span>
-          )}
-
-          {song.duration && (
-            <span>{song.duration}</span>
-          )}
-        </div>
 
         {onAdd && (
           <button
-            className="song-card-add"
+            className="btn btn-sm btn-ghost"
             onClick={onAdd}
           >
             <Plus size={16} />
-            Add to playlist
+            Add
           </button>
-        )}
-
-        {isPlaying && (
-          <div className="playing-indicator">
-            <span />
-            <span />
-            <span />
-          </div>
         )}
       </div>
     </article>

@@ -38,7 +38,7 @@ const Modal = ({
 
   return (
     <div
-      className="modal-overlay"
+      className="modal-backdrop"
       onMouseDown={onClose}
     >
       <div
@@ -51,9 +51,10 @@ const Modal = ({
         aria-labelledby="modal-title"
       >
         <div className="modal-header">
-          <h2 id="modal-title">{title}</h2>
+          <h2 id="modal-title" className="modal-title">{title}</h2>
 
           <button
+            className="btn btn-icon btn-ghost"
             onClick={onClose}
             aria-label="Close modal"
           >
@@ -61,7 +62,7 @@ const Modal = ({
           </button>
         </div>
 
-        <div className="modal-content">
+        <div className="modal-body">
           {children}
         </div>
       </div>

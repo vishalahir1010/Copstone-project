@@ -411,3 +411,24 @@ export const uniqueSongs = (
     return true;
   });
 };
+
+/**
+ * Get random songs.
+ */
+export const getRandomSongs = (songList = [], count = 5) => {
+  return shuffleSongs(songList).slice(0, count);
+};
+
+/**
+ * Get recommended songs based on genre/mood.
+ */
+export const getRecommendations = (songList = [], currentSong, limit = 5) => {
+  if (!currentSong) return songList.slice(0, limit);
+  return songList
+    .filter(
+      (song) =>
+        song.id !== currentSong.id &&
+        (song.genre === currentSong.genre || song.mood === currentSong.mood)
+    )
+    .slice(0, limit);
+};

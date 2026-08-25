@@ -29,7 +29,7 @@ const SearchBar = ({
       className="search-bar"
       onSubmit={handleSubmit}
     >
-      <Search size={19} />
+      <Search size={19} className="search-bar-icon" />
 
       <input
         type="search"
@@ -42,6 +42,7 @@ const SearchBar = ({
       {value && (
         <button
           type="button"
+          className="search-bar-clear"
           onClick={clearSearch}
           aria-label="Clear search"
         >
